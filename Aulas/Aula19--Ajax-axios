@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas 19 - Vue JS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <br><br>
+
+        <div class="container">
+
+            <button @click.stop.prevent="getUsers()" class="btn btn-success">GET USERS</button>
+
+            <h1>{{titulo}}</h1>
+            <div v-if="loader.users" class="">Carregando usuários...</div>
+            <div v-if="response.status == 'error'" class="alert alert-danger">{{response.msg}}</div>
+            <br><br>
+            <ul>
+                <li v-for="user in users">{{user.name}}</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script>
+        var mixin = {
+
+            methods: {
+
+                getUsers() {
+
+                    this.loader.users = true;
+                    var vm = this;
+                    var url = 'http://jsonplaceholder.typicode.com/users';
+                    axios.get(url).then(function (response) {
+                        v// this.$http.get(url).then(function (response) {
+                    //     this.users = response.body;
+                    // }, function (error) {
+                    //     this.response.status = "error"
+                    // }).finally(function () {
+                    //     this.loader.users = false;
+                    // })m.users = response.data;
+                        vm.loader.users = false;
+                    });                    
+                }
+            }
+        }
+
+        var app = new Vue({
+
+            el: "#app",
+
+            mixins: [mixin],
+
+            data: {
+                titulo: "Aulas 19 - Ajax com axios",
+                users: [],
+                loader: {
+                    users: false,
+                },
+                response: {
+                    msg: "Erro ao conectar",
+                    status: ""
+                }
+            },
+
+        });
+    </script>
+</body>
+
+</html>

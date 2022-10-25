@@ -1,0 +1,49 @@
+V-bind
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 06 - Vue JS</title>
+    <style media="screen">
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-show="status">{{ titulo }}</h1>
+        <img v-bind:src="imagem" v-bind:alt="alt">
+        <!-- Tambem tenho a opção de ao invés escrever v-bind, usar somente ":" antes da src,alt, etc... -->
+
+        <p :class="colorClass">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum commodi praesentium deleniti quae
+            magnam vitae illum maiores nihil omnis similique? Quis consectetur nostrum voluptatibus totam enim officia
+            temporibus veniam harum!</p>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <script>
+        var app = new Vue({
+
+            el: "#app",
+            data: {
+                titulo: "Aula 06 - v-bind",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3-cvXGB1RUgJJATz7TieUjN3Z-on3B55lWw&usqp=CAU",
+                alt: "Goku",
+                colorClass: "green"
+            }
+        });
+    </script>
+</body>
+
+</html>

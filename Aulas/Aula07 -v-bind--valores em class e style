@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 07 - Vue JS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+        <button class="btn" :class="btnClassEnviar" :style="btnStyleEnviar">ENVIAR </button>
+        <button class="btn" :class="btnClassLimpar" :style="btnStyleLimpar">LIMPAR </button>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <script>
+        var app = new Vue({
+
+            el: "#app",
+            data: {
+                titulo: "Aula 07 - v-bind - Atribuindo valor em class e style",
+                btnClassLimpar: {
+                    'btn-danger': true,
+                    'btn-sm': false
+                    /* Posso tambem fazer um objeto como no exemplo acima */
+                },
+
+                btnClassEnviar: 'btn-primary btn-lg',
+                /* Posso colocar mais de uma classe na minha variável,também criar arrays e criar objetos dentro de arrays  */
+
+                btnStyleLimpar: {
+                    'font-size': '30px',
+                    'text-transform': 'lowercase',
+                    'color': 'blue'
+                },
+                btnStyleEnviar: {
+                    'font-size': '20px',
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

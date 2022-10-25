@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas 20 - Vue JS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <h1 ref="title"> {{titulo}}</h1>
+
+            <transformers v-if="movie == transformers"></transformers>
+
+            <game-of-thrones v-if="movie == game-of-thrones"></game-of-thrones>
+
+            <ul ref="users">
+                <li v-for="(item, index) in users" :key="item.name"> {{item.name}} <a href=""
+                        @click.prevent.stop="remove(index)" style="text-decoration: none; color:red;">X</a> </li>
+            </ul>
+        </div>
+    </div> <!-- fim div app -->
+
+    <template id="transformers">
+        <div>
+            <h4>Transformers</h4>
+            <ul>
+                <li v-for="item in transformers"> {{item.name}} </li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="gameOfThrones">
+        <div>
+            <h4>Game of Thrones</h4>
+            <ul>
+                <li v-for="item in gameOfThrones"> {{item.name}} </li>
+            </ul>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+
+        Vue.component(
+            'transformers', {
+            template: "#transformers"
+        }
+
+        );
+
+        Vue.component(
+            'game-of-thrones',{
+                template: "#gameOfThrones",
+            }
+            
+            
+        );
+
+
+        var mixin = {
+            methods: {
+
+            }
+        }
+
+        var app = new Vue({
+
+            mixins: [mixin],
+
+            el: "#app",
+
+            mounted() {
+                console.log(this.$refs.users);
+            },
+
+            data: {// elementos 
+                titulo: "Curso Vuejs - Aula 20 - atributos especiais",
+                users: [
+                    { name: 'Everaldo' },
+                    { name: 'Charles' },
+                    { name: 'Moe' },
+                ],
+               movie: 'transformers',
+
+            },
+
+            computed: {//rotinas (roda sempre que há alterações) e retorna valores
+
+            },
+
+            watch: {//assiste quando uma variável for alterada
+
+            },
+
+            methods: {//rotinas e funções para serem acessadas por fora
+                remove(index) {
+                    this.users.splice(index, 1)
+                }
+
+            }
+
+        });
+
+    </script>
+</body>
+
+
+</html>

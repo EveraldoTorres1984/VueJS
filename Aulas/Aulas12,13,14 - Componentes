@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas 11,12,13 - Vue JS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav-bar></nav-bar>
+        <menu-bar :items="[{label: 'Serviços'}, {label: 'Ajuda'}]"></menu-bar>
+
+    </div>
+    <template id="nav">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>               
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <menu-bar :items="topNav" @emit-click="getLink"></menu-bar>
+                </div>
+            </div>
+        </nav>
+    </template>
+
+    <template id="menu">
+
+        <ul class="navbar-nav">
+            
+            <li v-for="(item, index) in items" class="nav-item">
+                <a @click.stop.prevent="emitClick(index)" class="nav-link" href="#">{{item.label}}</a>
+            </li>           
+           
+        </ul>
+
+    </template>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <script>
+        Vue.component('nav-bar', {
+            template: '#nav',
+
+            data(){
+                return{
+                  topNav:  [{label: 'Home'}, {label: 'Link'},{label: 'Disabled'}],
+                }
+            },
+            methods:{
+                getLink(index){
+                    alert(this.topNav[index].label);
+                }
+            }
+
+        });
+        Vue.component('menu-bar', {
+            template: '#menu',
+            props:{
+                items:{
+                    type: Array,
+                    required: true,                    
+                }
+            },
+            methods:{
+                emitClick(index){
+                    this.$emit('emit-click', index);
+                }
+            }
+
+        });
+
+        var app = new Vue({
+
+            el: "#app",
+
+            data: {
+                titulo: "Aulas 11,12,13 - Componentes",
+
+            },
+
+        });
+    </script>
+</body>
+
+</html>

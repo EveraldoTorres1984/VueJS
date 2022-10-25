@@ -1,0 +1,83 @@
+Aula -05 Vue JS - v-model
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 01 - Vue JS</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-show="status">{{ titulo }}</h1>
+        <label for="">Nome:</label><br>
+        <input type="text" v-model="nome">
+
+        <br><br>
+
+        <label for="">Telefone</label><br>
+        <input type="text" v-model="telefone">
+
+        <br><br>
+
+        <label for="">Deseja receber novidades?</label>
+        <input type="radio" value="Sim" v-model="novidades"> Sim
+        <input type="radio" value="Não" v-model="novidades"> Não
+
+        <br><br>
+
+        <label for="">Interesses</label><br>
+        <input type="checkbox" value="Futebol" v-model="interesses">Futebol <br>
+        <input type="checkbox" value="Basquete" v-model="interesses">Basquete <br>
+        <input type="checkbox" value="Rinha de Galo" v-model="interesses">Rinha de Galo<br>
+
+        <br><br>
+
+        <label for="">Como nos conheceu?</label><br>
+        <select v-model="conheceu">
+            <option value="">Escolha</option>
+            <option value="Google">Google</option>
+            <option value="TV">TV</option>
+            <option value="Revista">Revista</option>
+        </select>
+
+        <br><br>
+
+        <button>ENVIAR</button>
+
+        <hr>
+
+        Nome:{{nome}} <br>
+        Telefone:{{telefone}} <br>
+        Novidades:{{novidades}} <br>
+        Interesses:{{interesses}} <br>
+        Conheceu:{{conheceu}} <br>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <script>
+        var app = new Vue({
+
+            el: "#app",
+            data: {
+                titulo: "Aula 01 - Vuejs Ninja",
+                nome: "",
+                telefone: "",
+                novidades: "",
+                interesses: [
+                    "Futebol",
+                    "Basquete",
+                    "Rinha de Galo"
+                ],
+                conheceu: "",
+            }
+        });
+    </script>
+</body>
+
+</html>
